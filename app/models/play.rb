@@ -7,6 +7,10 @@ class Play < ActiveRecord::Base
   end
 
   def score
-    word.upcase.chars.inject(0){|sum, letter| sum + letter_scores[letter]}
+    word.upcase.chars.inject(0){|sum, letter| sum + letter_scores[letter].to_i}
+  end
+
+  def word_valid?
+    word =~ /^[a-zA-Z]+$/
   end
 end

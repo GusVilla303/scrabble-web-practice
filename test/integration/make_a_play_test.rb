@@ -15,14 +15,14 @@ class MakeAPlayTest < ActionDispatch::IntegrationTest
   end
 
   def test_blank_word_is_not_played_and_can_be_corrected
-    skip
     visit '/plays'
     click_link_or_button 'Play New Word'
     fill_in 'play[word]', :with => ""
     click_link_or_button 'Play!'
 
     within('#errors') do
-      assert page.has_content?('blank')
+
+      assert page.has_content?('blank'), "blank is not shown"
     end
 
     fill_in 'play[word]', :with => "fixed"
@@ -33,7 +33,6 @@ class MakeAPlayTest < ActionDispatch::IntegrationTest
   end
 
   def test_words_with_non_letters_are_rejected
-    skip
     visit '/plays'
     click_link_or_button 'Play New Word'
 
